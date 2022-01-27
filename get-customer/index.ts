@@ -5,11 +5,11 @@ import fetch from 'node-fetch';
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     context.log('HTTP trigger function processed a request.');
-    const customerCardNo =  (req.body && req.body.customerCardNo);
+    const customerRequest =  (req.body && req.body.hasOwnProperty('customerCardNo')) ? req.body as CustomerRequestDTO : undefined;
     let statusCode : number;
     let responseBody: object;
 
-    if(typeof customerCardNo === 'undefined'){
+    if(typeof customerRequest === 'undefined'){
         statusCode = 400;
         responseBody = new UserFriendlyError('Invalid payload');
         
@@ -22,7 +22,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
             "postman-token": process.env["POSTMAN_TOKEN"]!
         }
     
-        const response = await fetch(`${baseUrl}/${moduleName}/${customerCardNo}`, {headers} );
+        const response = await fetch(`${baseUrl}/${moduleName}/${customerRequest.customerCardNo}`, {headers} );
         const jsonObject = await response.json();
         statusCode = jsonObject.hasOwnProperty("error") ? 400 : 200;
         responseBody = jsonObject.hasOwnProperty("error") ? new UserFriendlyError(jsonObject.error) : CustomerResponseDTO.from(<Customer>jsonObject); 

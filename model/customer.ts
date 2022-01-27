@@ -28,7 +28,7 @@ export class Customer{
 }
 
 export class CustomerRequestDTO{
-    CustomerCardNo : string;
+    customerCardNo : string;
 }
 
 export class CustomerResponseDTO{
