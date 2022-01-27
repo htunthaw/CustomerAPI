@@ -1,0 +1,12 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "BASE_URL": "https://dummyapi.io/data/v1/",
+    "API_MODULE_NAME": "user",    
+    "APP_ID": "61f17d2f91995f612ce863bc",
+    "POSTMAN_TOKEN": "86297acd-0389-0454-2c1f-ff8e20907d8d",
+    "CACHE_CONTROL": "no-cache"
+  }
+}
