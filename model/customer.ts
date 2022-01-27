@@ -2,8 +2,8 @@ import * as moment from 'moment';
 import {Func} from '../util/func'
 
 enum CustomerGender {
-    female = '2-Frau',
-    male = '1-Herr',
+    '2-Frau' = 'female',
+    '1-Herr' = 'male'
 }
 
 export class Customer{
@@ -47,7 +47,7 @@ export class CustomerResponseDTO{
         customer.lastName,
         customer.firstName,
         customer.email,
-        moment(customer.dateOfBirth).format("YYYYMMDD"),
+        moment(customer.dateOfBirth).isValid() ? moment(customer.dateOfBirth).format("YYYYMMDD") : "",
         Func.getEnumKeyByEnumValue(CustomerGender, customer.gender)
     );
     }
